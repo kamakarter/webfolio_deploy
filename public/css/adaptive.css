@@ -1,0 +1,132 @@
+
+
+@media  (min-width: 270px) and (max-width: 1170px){
+    .container {
+        max-width: 100%;
+        padding: 0 8%;
+        margin: 0 auto;
+        border: 1px solid red;
+        border-width: 0 1px 0 1px;
+    }
+
+    /* header */
+
+    header {
+        display: none;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    /* components */
+
+    .form-column-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0px;
+    }
+
+    .form-div {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+    }
+
+    .form-canvas {
+        padding: 32px 24px; 
+        border-radius: 24px;
+    }
+
+    /* banner */
+
+
+
+    /* steps */
+
+    .steps_box {
+        margin-top: 44px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 30px;
+        row-gap: 30px;
+    }
+
+    .steps-title_box {
+        align-items: start;
+    }
+
+    .steps-title, .pre-title {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    /* info block */
+
+    .info-first_inner_box {
+        grid-template-columns: 1fr;
+        row-gap: 64px;
+    }
+
+    .info-logo_box {
+        justify-content: start;
+        margin-bottom: 64px;
+    }
+
+    .info-divider {
+        padding-left: 25%;
+        padding-top: 32px;
+        display: none;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: start;
+        gap: 44px;
+        padding: 72px 8%;
+    }
+
+    .right_section {
+        max-width: 25%;
+        border-radius: 20px
+    }
+
+    /* slider */
+
+    .slider {
+        display: none;
+    }
+
+    /* footer */
+
+    footer {
+        padding: 64px 0;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 52px;
+    }
+
+    .footer-grid_section:nth-child(2) {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        row-gap: 44px;
+    }
+
+    .footer-docs_grid {
+        flex-direction: column-reverse;
+        gap: 16px;
+    }
+
+    .footer-docs_text_item:nth-child(2) {
+        margin: 0;
+    }
+    
+}
+
+
+
