@@ -3,7 +3,7 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-grid_section">
-                <a href="/" class="logo animate">
+                <a href="{{ route('show.home') }}" class="logo animate">
                         <svg width="151" height="25" viewBox="0 0 151 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <!-- logotype text -->
                             <path class="logo-text" d="M142.888 23.864C141.286 23.864 139.899 23.5125 138.728 22.8093C137.556 22.1062 136.647 21.1199 136.003 19.8503C135.368 18.5808 135.051 17.1062 135.051 15.4265C135.051 13.7371 135.368 12.2576 136.003 10.988C136.647 9.70874 137.556 8.71753 138.728 8.0144C139.899 7.31128 141.286 6.95972 142.888 6.95972C144.489 6.95972 145.876 7.31128 147.048 8.0144C148.22 8.71753 149.128 9.70874 149.772 10.988C150.417 12.2576 150.739 13.7371 150.739 15.4265C150.739 17.1062 150.417 18.5808 149.772 19.8503C149.128 21.1199 148.22 22.1062 147.048 22.8093C145.876 23.5125 144.489 23.864 142.888 23.864ZM142.888 20.7585C143.776 20.7585 144.509 20.5242 145.085 20.0554C145.661 19.5769 146.091 18.9324 146.374 18.1218C146.667 17.3113 146.813 16.4128 146.813 15.4265C146.813 14.4207 146.667 13.5125 146.374 12.7019C146.091 11.8914 145.661 11.2517 145.085 10.783C144.509 10.3044 143.776 10.0652 142.888 10.0652C142.019 10.0652 141.291 10.3044 140.705 10.783C140.119 11.2517 139.68 11.8914 139.387 12.7019C139.104 13.5125 138.962 14.4207 138.962 15.4265C138.962 16.4128 139.104 17.3113 139.387 18.1218C139.68 18.9324 140.119 19.5769 140.705 20.0554C141.291 20.5242 142.019 20.7585 142.888 20.7585Z" fill="white"/>
@@ -48,10 +48,10 @@
 
                     <div class="footer-nav_links">
                         <a href="https://t.me/+edoLfW7Cc1FlMmJi" target="_blank" class="footer-nav-link animate">Наш блог</a>
-                        <a href="?p=help" class="footer-nav-link animate">Ответы на вопросы</a>
-                        <a href="?p=help" class="footer-nav-link animate">Задать вопрос</a>
-                        <a href="?p=help" class="footer-nav-link animate">Предложить идею</a>
-                        <a href="?p=help" class="footer-nav-link animate">Оставить отзыв</a>
+                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Ответы на вопросы</a>
+                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Задать вопрос</a>
+                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Предложить идею</a>
+                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Оставить отзыв</a>
                     </div>
                 </div>
 
@@ -59,9 +59,9 @@
                     <p class="footer-nav_title animate">Навигация</p>
 
                     <div class="footer-nav_links">
-                        <a href="?p=home" class="footer-nav-link animate">Главная</a>
-                        <a href="?p=account" class="footer-nav-link animate">Мой аккаунт</a>
-                        <a href="?p=account" class="footer-nav-link animate">Редактировать аккаунт</a>
+                        <a href="{{ route('show.home') }}" class="footer-nav-link animate">Главная</a>
+                        <a href="" class="footer-nav-link animate">Мой аккаунт</a>
+                        <a href="" class="footer-nav-link animate">Редактировать аккаунт</a>
                         
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                     <p class="footer-nav_title ">Связь с командой</p>
 
                     <form action="" method="post" class="footer-form_for_help" name="post-email">
-                        <input type="text" name="email" class="form-input" required placeholder="Ваша почта" >
-                        <textarea name="message" class="form-input form_message" placeholder="Напишите сообщение" required></textarea>
+                        <input type="text" name="email" class="form-input"  placeholder="Ваша почта" >
+                        <textarea name="message" class="form-input form_message" placeholder="Напишите сообщение" ></textarea>
 
                         <button class="btn btn-s btn-1" type="submit" name="post-email" >Отправить сообщение</button>
                     </form>
@@ -86,7 +86,7 @@
                 © 2024 WebFolio
             </div>
 
-            <a href="?p=policy" class="footer-docs_text_item">
+            <a href="{{ route('show.policy') }}" class="footer-docs_text_item">
                 Политика конфиденциальности
             </a>
 

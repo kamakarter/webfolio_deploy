@@ -28,80 +28,94 @@
 
             <!-- навигация -->
             <nav>
-                <a href="/home#info" class="nav_link scrolled">Как это работает</a>
-                <a href="/home#steps" class="nav_link scrolled">Как начать</a>
-                <a href="/help" class="nav_link scrolled">Ответы на вопросы</a>
-                <a href="/help" class="nav_link scrolled">Поддержка</a>                
+                <a href="{{ route('show.home')}}#steps" class="nav_link scrolled">Как это работает</a>
+                <a href="{{ route('show.home')}}#info" class="nav_link scrolled">Как начать</a>
+                <a href="{{ route('show.help')}}" class="nav_link scrolled">Поддержка</a>                
             </nav>
 
             <!-- динамичный элемент -->
             <div class="header_r_component">
                 <div class="auth_reg_btns">
-                    <a href="?q=admin" class="reg_btn btn btn-s btn-1 scrolled">
-                        Панель администратора
-                    </a>
-                
-                    <div class="header-user_component header-user_action_button_js">
+
+                    
+                    
+                    @auth
+
+                        @if(Auth::user()->role == 'admin')
+                            <a href="?q=admin" class="reg_btn btn btn-s btn-1 scrolled">
+                                Панель администратора
+                            </a>
+                        @endif
+                        <div class="header-user_component header-user_action_button_js">
                         <div class="header-user_action_button">
                             <div class="header-user_image_box">
-                                <img class="header-user_image" src="../../assets/icons/user_avatar_default.svg" alt="image">
+                                <img class="header-user_image" src="{{ asset('icons/user_avatar_default.svg') }}" alt="image">
                                 <span class="status scrolled"></span>
                             </div>
-
+                            
                             <div class="header-action_icon_box">
-                                <img class="header-action_icon_arrow" id="header-action_icon_el" src="../../assets/icons/header-action_icon_el_black.svg" alt="icon">
+                                <img class="header-action_icon_arrow" id="header-action_icon_el" src="{{ asset('icons/header-action_icon_el_black.svg') }}" alt="icon">
                             </div>
                         </div>
-
+                        
                         <div class="header-user_actions_modal">
                             <div class="admin-navigation_box">
                                 <a href="/account" class="admin-navigation_link">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                                         <path d="M14 14.125V12.875C14 12.212 13.7366 11.5761 13.2678 11.1072C12.5355 10.375 11.6943 10.375 11.0312 10.375H7.4375C6.77446 10.375 5.46447 10.375 4.73223 11.1072C4.26339 11.5761 4 12.212 4 12.875V14.125M11.5 5.375C11.5 6.75571 10.3807 7.875 9 7.875C7.61929 7.875 6.5 6.75571 6.5 5.375C6.5 3.99429 7.61929 2.875 9 2.875C10.3807 2.875 11.5 3.99429 11.5 5.375Z" stroke="#344054" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-
+                                    
                                     <p>
                                         Профиль
                                     </p>
                                 </a>
-
+                                
                                 <a href="/user/" class="admin-navigation_link">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                                         <path d="M2 1.5L12.15 3.95L13.2 9.2L9.7 12.7L4.45 11.65L2 1.5ZM2 1.5L7.3102 6.8102M9 13.4L13.9 8.5L16 10.6L11.1 15.5L9 13.4ZM9.7 7.8C9.7 8.5732 9.0732 9.2 8.3 9.2C7.5268 9.2 6.9 8.5732 6.9 7.8C6.9 7.0268 7.5268 6.4 8.3 6.4C9.0732 6.4 9.7 7.0268 9.7 7.8Z" stroke="#46A7FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-
+                                    
                                     <p>
                                         Портфолио
                                     </p>
                                 </a>
-
                                 
-                                <a href="" class="admin-navigation_link" name="out2">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="admin-navigation_link" name="out2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
                                         <path d="M6.33333 13H4.11111C3.81643 13 3.53381 12.8829 3.32544 12.6746C3.11706 12.4662 3 12.1836 3 11.8889V4.11111C3 3.81643 3.11706 3.53381 3.32544 3.32544C3.53381 3.11706 3.81643 3 4.11111 3H6.33333M10.2222 10.7778L13 8M13 8L10.2222 5.22222M13 8H6.33333" stroke="#344054" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     <p>
                                         Выйти
                                     </p>
-                                </a>
+                                </button>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                    <a href="" class="auth_btn btn btn-s btn-2 scrolled">
-                        Войти
-                    </a>
-
-                    <a href="" class="reg_btn btn btn-s btn-1 scrolled">
-                        Регистрация
-                    </a>
+                        </div>
+                    @endauth
                     
+
+                    @guest
+                        <a href="{{ route('show.signin') }}" class="auth_btn btn btn-s btn-2 scrolled">
+                            Войти
+                        </a>
+                        
+                        <a href="{{ route('show.signup') }}" class="reg_btn btn btn-s btn-1 scrolled">
+                            Регистрация
+                        </a>
+                    @endguest
                 </div>
             </div>
     </div>
 </header>
 
 
-<script src="../assets/js/user-accordeon.js"></script>
+<script src="{{ asset('js/accordeon.js') }}" defer ></script>
+<script src="{{ asset('js/user-accordeon.js') }}" defer ></script>
+
+
 
 
 <style>
@@ -117,5 +131,12 @@
         header nav {
             display: none;
         }
+    }
+
+    header form  button {
+        border: none;
+        width: 100%;
+        background: transparent;
+        cursor: pointer;
     }
 </style>

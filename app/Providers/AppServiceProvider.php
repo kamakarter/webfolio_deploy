@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (app()->environment('local')) {
+            header("Content-Security-Policy: default-src *; img-src 'self' data:;");
+        }
     }
 }

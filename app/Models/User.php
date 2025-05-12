@@ -19,14 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
-        'password',
         'login',
-        'email_verified_at',
+        'password',
         'role',
         'user_avatar',
         'user_bg',
-        'surname',
         'about_me',
         'country',
         'city',
@@ -39,12 +38,14 @@ class User extends Authenticatable
         'stack',
     ];
 
-    public function experiences(){
+    public function experiences()
+    {
         return $this->hasMany(Experience::class);
     }
 
-    
-    public function projects(){
+
+    public function projects()
+    {
         return $this->hasMany(Project::class);
     }
 
