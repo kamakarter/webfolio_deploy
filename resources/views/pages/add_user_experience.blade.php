@@ -8,18 +8,20 @@
     <section class="form-section">
         <div class="container">
             <div class="form-section_backlink_box">
-                <button onclick="window.history.back(); return false;" class="backlink">
+                <a href="{{ route('show.account') }}" class="backlink">
                     <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.40705 1.09294L1 5.49999M1 5.49999L5.40705 9.90704M1 5.49999L14.75 5.49999" stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
 
                     <p class="backlink_text">Вернуться назад</p>
-                </button>
+                </a>
             </div>
 
 
             <div class="form-canvas shadow-s">
-                <form action="" method="post" class="form-box" name="add-exp">
+                <form action="{{ route('add.user.experience', Auth::user()->id) }}" method="post" class="form-box" name="add-exp" enctype="multipart/form-data">
+                    @csrf
+                    @method('POST')
                     <p class="form-title">
                         Добавьте свой опыт работы
                     </p>
@@ -27,20 +29,20 @@
                     <div class="form-column-2">
                             <!-- поле ввода -->
                             <div class="form-div">
-                                <label for="company" class="form-label">
+                                <label for="company_name" class="form-label">
                                     Организация*
                                 </label>
 
                                 <input type="text" 
-                                        name="company" 
+                                        name="company_name" 
                                         class="form-input" 
                                         placeholder="Введите название компании или организации"
-                                        value=""
+                                        value="{{ old('company_name') }}"
                                 >
 
-                                <p class="text-error hidden">
-                                
-                                </p>
+                                @error('company_name')
+                                    <p class="text-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                                 <!-- поле ввода -->
@@ -53,51 +55,51 @@
                                     name="profession" 
                                     class="form-input" 
                                     placeholder="Введите вашу должность"
-                                    value=""
+                                    value="{{ old('profession') }}"
                                 >
     
-                                <p class="text-error hidden">
-                                
-                                </p>
+                                @error('profession')
+                                    <p class="text-error">{{ $message }}</p>
+                                @enderror
                             </div>
                     </div>
 
                     <div class="form-column-2">
                         <!-- поле ввода -->
                         <div class="form-div">
-                            <label for="start" class="form-label">
+                            <label for="start_date" class="form-label">
                                 Начало работы*
                             </label>
 
                             <input type="date"
                                 min="1980-01-01"
-                                name="start" 
+                                name="start_date" 
                                 class="form-input" 
-                                value=""
+                                value="{{ old('start_date') }}"
                             >
 
-                            <p class="text-error hidden">
-                            
-                            </p>
+                            @error('start_date')
+                                <p class="text-error">{{ $message }}</p>
+                            @enderror
                         </div>
 
                             <!-- поле ввода -->
                         <div class="form-div">
-                            <label for="end" class="form-label">
+                            <label for="end_date" class="form-label">
                                 Окончание работы*
                             </label>
 
                             <input type="date"
                                 min="1980-01-01"
-                                name="end" 
+                                name="end_date" 
                                 class="form-input" 
                                 placeholder="Например: Июнь 2015"
-                                value=""
+                                value="{{ old('end_date') }}"
                             >
 
-                            <p class="text-error hidden">
-                                
-                            </p>
+                            @error('end_date')
+                                <p class="text-error">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     
@@ -110,13 +112,32 @@
                         <textarea name="tasks" 
                             class="form-textarea" 
                             placeholder="Например: Аналитика, Разработка дизайна сайта, Frontend на React"
-                        >
+                            value="{{ old('tasks') }}"
+                        ></textarea>
 
-                        </textarea>
+                        @error('tasks')
+                            <p class="text-error">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <p class="text-error hidden">
-                            
-                        </p>
+                    <div class="form-div form-div-file">
+                        <label for="company_logotype" class="form-label">
+                            Добавьте логотип компании в формате 1:1 (квадратный формат) *
+                        </label>
+        
+                        <div class="file-upload">
+                            <label>
+                                <input type="file" name="company_logotype" class="input-file">
+                                <span>Выбрать файл</span>
+                            </label>
+                        </div>
+        
+                        <span id="fileName"></span>
+        
+                        @error('company_logotype')
+                            <p class="text-error">{{ $message }}</p>
+                        @enderror
+                
                     </div>
 
                     <!-- btns -->

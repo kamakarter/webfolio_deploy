@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -102,6 +103,63 @@ class UserController extends Controller
         ]);
 
         $user->update($validated);
+
+        return redirect()->route('show.account');
+    }
+
+    public function showUploadUserAvatar()
+    {
+        return view('pages.add_user_avatar');
+    }
+
+
+    public function uploadUserAvatar(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5200',
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            if ($user->user_avatar && file_exists(public_path($user->user_avatar))) {
+                unlink(public_path($user->user_avatar));
+            }
+
+            $filename = uniqid() . '.' . $request->file('avatar')->getClientOriginalExtension();
+
+            $request->file('avatar')->move(public_path('avatars'), $filename);
+
+            $user->update([
+                'user_avatar' => 'avatars/' . $filename,
+            ]);
+        }
+
+        return redirect()->route('show.account');
+    }
+
+    public function addUserBackground()
+    {
+        return view('pages.add_user_bg');
+    }
+
+    public function uploadUserBackground(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $request->validate([
+            'user_bg' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5200',
+        ]);
+
+        if ($request->hasFile('user_bg')) {
+            $filename = uniqid() . '.' . $request->file('user_bg')->getClientOriginalExtension();
+
+            $request->file('user_bg')->move(public_path('backgrounds'), $filename);
+
+            $user->update([
+                'user_bg' => $filename,  
+            ]);
+        }
 
         return redirect()->route('show.account');
     }

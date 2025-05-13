@@ -2249,3 +2249,42 @@ float: right;
             background: #3B8CD6;
         }
     
+
+/* delete experience */
+
+.confirm-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.confirm-section .container {
+    padding: 0 144px;
+}
+
+.confirm_btns {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.confirm_btns .btn {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.confirm-form {
+    width: 100%;
+    min-height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 144px;
+    
+}
+
+.confirm-form .form-title {
+    text-align: center;
+    margin: 16px 0 32px 0;
+}

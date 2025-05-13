@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -60,9 +61,14 @@ class Controller extends BaseController
         return view('pages.account', compact('experiences', 'projects'));
     }
 
-    public function showUserAccount()
+    public function showUserAccount($id)
     {
-        return view('pages.show_user_account');
+        $user = User::findOrFail($id);
+
+        $experiences = Experience::where('user_id', $user->id)->get();
+        $projects = Project::where('user_id', $user->id)->get();
+
+        return view('pages.show_user_account', compact('user', 'experiences', 'projects'));
     }
 
     public function showAddUserData()
