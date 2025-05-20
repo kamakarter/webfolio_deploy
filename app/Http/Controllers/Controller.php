@@ -17,7 +17,10 @@ class Controller extends BaseController
 
     public function showHomePage()
     {
-        return view('pages.home');
+        $all_users_with_avatars = User::whereNotNull('user_avatar')->get();
+        $users_avatars = $all_users_with_avatars->shuffle()->take(8);
+
+        return view('pages.home', compact('users_avatars'));
     }
 
     public function showPolicyPage()
@@ -51,7 +54,7 @@ class Controller extends BaseController
     {
         return view('pages.sign_in');
     }
-
+    
     public function showAccount()
     {
         $experiences = Experience::where('user_id', auth()->user()->id)->get();
@@ -61,9 +64,9 @@ class Controller extends BaseController
         return view('pages.account', compact('experiences', 'projects'));
     }
 
-    public function showUserAccount($id)
+    public function showUserAccount($login)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('login', $login)->first();
 
         $experiences = Experience::where('user_id', $user->id)->get();
         $projects = Project::where('user_id', $user->id)->get();

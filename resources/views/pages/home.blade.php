@@ -10,62 +10,30 @@
 
             <div class="banner-box_for_content">
                 <div class="banner-users_box">
-                    <h4 class="banner-users_box_title fade-in-down">FREE PORTFOLIO PLATRORM</h4>
-
+                    <h4 class="banner-users_box_title fade-in-down">ПРОСТО. БЫСТРО. УДОБНО.</h4>
+                    @if ($users_avatars->count() > 0)
                     <div class="banner-users_box_images fade-in-down">
                         <div class="avatar_box">
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-1.png') }}"
-                                alt="banner-avatar"
+                            <marquee 
+                                behavior="scroll" 
+                                direction="left" 
+                                scrollamount="5" 
+                                scrolldelay="0"
+                                loop="-1"
+                                onmouseover="this.stop()" 
+                                onmouseout="this.start()"
                             >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-2.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-3.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-4.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-5.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-6.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-7.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-8.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-9.png') }}"
-                                alt="banner-avatar"
-                            >
-                            <img
-                                class="banner-avatar" 
-                                src="{{ asset('storage/users_avatar/Avatar-10.png') }}"
-                                alt="banner-avatar"
-                            >
+                            @foreach ($users_avatars as $user_avatar)
+                                <img
+                                    class="banner-avatar" 
+                                    src="{{ asset($user_avatar->user_avatar) }}"
+                                    alt="banner-avatar"
+                                >
+                            @endforeach
+                        </marquee>
                         </div>
                     </div>
+                    @endif
                 </div>
 
                 <div class="banner-main_box">

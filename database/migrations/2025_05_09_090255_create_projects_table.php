@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('stack')->nullable();
-            $table->string('github_link');
-            $table->string('deploy_link');
+            $table->string('github_link')->nullable();
+            $table->string('deploy_link')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

@@ -49,6 +49,16 @@ class User extends Authenticatable
         return $this->hasMany(Project::class);
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function tariff()
+    {
+        return $this->belongsTo(Tariff::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

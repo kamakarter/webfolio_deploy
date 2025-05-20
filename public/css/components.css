@@ -38,6 +38,10 @@ h6 {
 }
 
 /* buttons */
+button[type="submit"] {
+    cursor: pointer;
+    border: none;
+}
 
 .btn {
     outline: none;
@@ -99,6 +103,45 @@ h6 {
 .btn-white {
     background: var(--base-bg-color);
     color: var(--accent-color);
+}
+
+.header-resume-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.base-btn-action {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px solid #E4EAF2;
+    background: #fff;
+}
+
+.base-btn-action:hover {
+    background: var(--light-blue-color);
+}
+
+.base-btn-action-plus-icon {
+    width: 16px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 90px;
+    background: var(--accent-color);
+}
+
+.base-btn-action-content {
+    color: var(--base-text-color);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; 
 }
 
 
@@ -534,5 +577,5 @@ h6 {
     transform: scale(1.05);
 }
 
-/* error-page */
+
 

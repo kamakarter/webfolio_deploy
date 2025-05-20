@@ -1,10 +1,14 @@
 @extends('app')
 
 @section('content')
+    @php
+        $hideHeaderFooter = true;
+    @endphp
+
     <section class="admin" id="admin">
-        <div class="container admin_grid">
-            <div class="admin-menu fade-in-left">
-                <a href="/" class="admin-logo">
+        <div class="container admin_grid ">
+            <div class="admin-menu fade-in-left shadow-s">
+                <a href="{{ route('show.home') }}" class="admin-logo">
                     <svg width="133" height="22" viewBox="0 0 133 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M125.74 21.0004C124.331 21.0004 123.111 20.691 122.079 20.0722C121.048 19.4535 120.249 18.5855 119.682 17.4683C119.123 16.3511 118.844 15.0535 118.844 13.5754C118.844 12.0886 119.123 10.7867 119.682 9.66949C120.249 8.54371 121.048 7.67145 122.079 7.0527C123.111 6.43395 124.331 6.12457 125.74 6.12457C127.15 6.12457 128.37 6.43395 129.401 7.0527C130.432 7.67145 131.232 8.54371 131.799 9.66949C132.366 10.7867 132.65 12.0886 132.65 13.5754C132.65 15.0535 132.366 16.3511 131.799 17.4683C131.232 18.5855 130.432 19.4535 129.401 20.0722C128.37 20.691 127.15 21.0004 125.74 21.0004ZM125.74 18.2675C126.522 18.2675 127.167 18.0613 127.674 17.6488C128.181 17.2277 128.559 16.6605 128.808 15.9472C129.066 15.2339 129.195 14.4433 129.195 13.5754C129.195 12.6902 129.066 11.891 128.808 11.1777C128.559 10.4644 128.181 9.90153 127.674 9.48903C127.167 9.06793 126.522 8.85739 125.74 8.85739C124.975 8.85739 124.335 9.06793 123.82 9.48903C123.304 9.90153 122.917 10.4644 122.659 11.1777C122.41 11.891 122.286 12.6902 122.286 13.5754C122.286 14.4433 122.41 15.2339 122.659 15.9472C122.917 16.6605 123.304 17.2277 123.82 17.6488C124.335 18.0613 124.975 18.2675 125.74 18.2675Z"
@@ -53,7 +57,7 @@
                 </a>
 
                 <div class="admin-navigation_box">
-                    <a href="/" class="admin-navigation_link">
+                    <a href="#dashboard" class="admin-navigation_link active" data-tab="dashboard">
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.22222 3H1V9.22222H7.22222V3Z" stroke="#D8DDE1" stroke-width="1.75"
@@ -68,138 +72,431 @@
                         <p>Главная</p>
                     </a>
 
-                    <a href="" class="admin-navigation_link">
+                    <a href="#users" class="admin-navigation_link" data-tab="users">
                         <svg width="22" height="21" viewBox="0 0 22 21" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M15.2222 18V16.2222C15.2222 15.2792 14.8476 14.3749 14.1808 13.7081C13.514 13.0413 12.6097 12.6667 11.6667 12.6667H4.55556C3.61256 12.6667 2.70819 13.0413 2.0414 13.7081C1.3746 14.3749 1 15.2792 1 16.2222V18M20.5556 18V16.2222C20.555 15.4344 20.2928 14.6691 19.8101 14.0465C19.3274 13.4239 18.6517 12.9792 17.8889 12.7822M14.3333 2.11556C15.0981 2.31138 15.776 2.75618 16.2601 3.37983C16.7442 4.00348 17.007 4.77052 17.007 5.56C17.007 6.34948 16.7442 7.11652 16.2601 7.74017C15.776 8.36382 15.0981 8.80862 14.3333 9.00444M11.6667 5.55556C11.6667 7.51923 10.0748 9.11111 8.11111 9.11111C6.14743 9.11111 4.55556 7.51923 4.55556 5.55556C4.55556 3.59188 6.14743 2 8.11111 2C10.0748 2 11.6667 3.59188 11.6667 5.55556Z"
                                 stroke="#D8DDE1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-
                         <p>Пользователи</p>
                     </a>
 
-
-                    <a href="?logout" class="admin-navigation_link" name="out-admin">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 17 17"
-                            fill="none">
+                    <a href="#tariffs" class="admin-navigation_link" data-tab="tariffs">
+                        <svg width="22" height="21" viewBox="0 0 22 21" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M6.33333 13H4.11111C3.81643 13 3.53381 12.8829 3.32544 12.6746C3.11706 12.4662 3 12.1836 3 11.8889V4.11111C3 3.81643 3.11706 3.53381 3.32544 3.32544C3.53381 3.11706 3.81643 3 4.11111 3H6.33333M10.2222 10.7778L13 8M13 8L10.2222 5.22222M13 8H6.33333"
-                                stroke="#344054" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+                                d="M15.2222 18V16.2222C15.2222 15.2792 14.8476 14.3749 14.1808 13.7081C13.514 13.0413 12.6097 12.6667 11.6667 12.6667H4.55556C3.61256 12.6667 2.70819 13.0413 2.0414 13.7081C1.3746 14.3749 1 15.2792 1 16.2222V18M20.5556 18V16.2222C20.555 15.4344 20.2928 14.6691 19.8101 14.0465C19.3274 13.4239 18.6517 12.9792 17.8889 12.7822M14.3333 2.11556C15.0981 2.31138 15.776 2.75618 16.2601 3.37983C16.7442 4.00348 17.007 4.77052 17.007 5.56C17.007 6.34948 16.7442 7.11652 16.2601 7.74017C15.776 8.36382 15.0981 8.80862 14.3333 9.00444M11.6667 5.55556C11.6667 7.51923 10.0748 9.11111 8.11111 9.11111C6.14743 9.11111 4.55556 7.51923 4.55556 5.55556C4.55556 3.59188 6.14743 2 8.11111 2C10.0748 2 11.6667 3.59188 11.6667 5.55556Z"
+                                stroke="#D8DDE1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-
-                        <p>
-                            Выйти
-                        </p>
+                        <p>Тарифы</p>
                     </a>
+
+                    <a href="#subscriptions" class="admin-navigation_link" data-tab="subscriptions">
+                        <svg width="22" height="21" viewBox="0 0 22 21" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.2222 18V16.2222C15.2222 15.2792 14.8476 14.3749 14.1808 13.7081C13.514 13.0413 12.6097 12.6667 11.6667 12.6667H4.55556C3.61256 12.6667 2.70819 13.0413 2.0414 13.7081C1.3746 14.3749 1 15.2792 1 16.2222V18M20.5556 18V16.2222C20.555 15.4344 20.2928 14.6691 19.8101 14.0465C19.3274 13.4239 18.6517 12.9792 17.8889 12.7822M14.3333 2.11556C15.0981 2.31138 15.776 2.75618 16.2601 3.37983C16.7442 4.00348 17.007 4.77052 17.007 5.56C17.007 6.34948 16.7442 7.11652 16.2601 7.74017C15.776 8.36382 15.0981 8.80862 14.3333 9.00444M11.6667 5.55556C11.6667 7.51923 10.0748 9.11111 8.11111 9.11111C6.14743 9.11111 4.55556 7.51923 4.55556 5.55556C4.55556 3.59188 6.14743 2 8.11111 2C10.0748 2 11.6667 3.59188 11.6667 5.55556Z"
+                                stroke="#D8DDE1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p>Подписки</p>
+                    </a>
+
+
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="admin-navigation_link" name="out2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17"
+                                fill="none">
+                                <path
+                                    d="M6.33333 13H4.11111C3.81643 13 3.53381 12.8829 3.32544 12.6746C3.11706 12.4662 3 12.1836 3 11.8889V4.11111C3 3.81643 3.11706 3.53381 3.32544 3.32544C3.53381 3.11706 3.81643 3 4.11111 3H6.33333M10.2222 10.7778L13 8M13 8L10.2222 5.22222M13 8H6.33333"
+                                    stroke="#344054" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p>Выйти</p>
+                        </button>
                     </form>
                 </div>
             </div>
 
-            <div class="admin-section fade-in-right">
-                <div class="admin-title_box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none">
-                        <g clip-path="url(#clip0_290_5485)">
-                            <path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="#D8DDE1"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_290_5485">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+            <div class="admin-section fade-in-right shadow-s">
+                <!-- Dashboard Tab -->
+                <div class="tab-content active" id="dashboard">
+                    <div class="admin-title_box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <g clip-path="url(#clip0_290_5485)">
+                                <path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="#D8DDE1"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_290_5485">
+                                    <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
 
-                    <div class="admin-title_textbox">
-                        <a href="?q=admin" class="admin-title">Панель администратора</a>
-                        /
-                        <a href="?q=admin" class="admin-title_dop">Пользователи</a>
+                        <div class="admin-title_textbox">
+                            <a href="#dashboard" class="admin-title">Панель администратора</a>
+                            /
+                            <a href="#dashboard" class="admin-title_dop">Главная</a>
+                        </div>
+                    </div>
+
+                    <div class="admin-section_content_box">
+                        <div class="dashboard-content">
+                            <h2>Добро пожаловать в панель администратора</h2>
+                            <p>Здесь вы можете управлять пользователями и настройками системы.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="admin-section_content_box">
-                    <div class="admin-users">
-                        <!-- шапка сетки -->
-                        <div class="admin-users_box users-grid">
-                            <div class="grid-element grid-title">Имя</div>
-                            <div class="grid-element grid-title">Email</div>
-                            <div class="grid-element grid-title">Ссылка на портфолио</div>
-                            <div class="grid-element grid-title"></div>
+                <!-- Users Tab -->
+                <div class="tab-content" id="users">
+                    <div class="admin-title_box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <g clip-path="url(#clip0_290_5485)">
+                                <path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="#D8DDE1"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_290_5485">
+                                    <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <div class="admin-title_textbox">
+                            <a href="#users" class="admin-title">Панель администратора</a>
+                            /
+                            <a href="#users" class="admin-title_dop">Пользователи</a>
                         </div>
+                    </div>
 
-                        <!-- пользователи -->
-                        <div class="admin-users_box users-grid">
-                            <div class="grid-element in-user-grid">
-                                <div class="in-user-grid_box">
-                                    <div class="in-user-grid_avatar_box">
-                                        <img src="" alt="avatar" class="in-user-grid_avatar">
+                    <div class="admin-section_content_box">
+                        <div class="admin-users">
+                            <!-- шапка сетки -->
+                            <div class="admin-users_box users-grid">
+                                <div class="grid-element grid-title">Имя</div>
+                                <div class="grid-element grid-title">Email</div>
+                                <div class="grid-element grid-title">Ссылка на портфолио</div>
+                                <div class="grid-element grid-title"></div>
+                            </div>
+
+                            <!-- пользователи -->
+                            @forelse ($users as $user)
+                                <div class="admin-users_box users-grid">
+                                    <div class="grid-element in-user-grid">
+                                        <div class="in-user-grid_box">
+                                            <div class="in-user-grid_avatar_box">
+                                                @if ($user->user_avatar)
+                                                    <img src="{{ $user->user_avatar }}" alt="avatar"
+                                                        class="in-user-grid_avatar">
+                                                @else
+                                                    <img src="{{ asset('icons/default_avatar.svg') }}" alt="user-avatar"
+                                                        class="user-avatar">
+                                                @endif
+                                            </div>
+
+                                            <div class="in-user-grid_data_box">
+                                                <p class="in-user-grid_dataname">
+                                                    {{ $user->name }} {{ $user->surname }}
+                                                </p>
+                                                <p class="in-user-grid_datalogin">
+                                                    {{ $user->login }}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-
-    
-                                    <div class="in-user-grid_data_box">
-                                        <p class="in-user-grid_dataname">
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            {{ $user->email }}
                                         </p>
-                                        <p class="in-user-grid_datalogin"></p>
+                                    </div>
+                                    <div class="grid-element in-user-grid">
+                                        <a href="{{ route('show.user.account', $user->login) }}" target="_blank"
+                                            class="in-user-grid_link">{{ '@' . $user->login }}</a>
+                                    </div>
+                                    <div class="grid-element in-user-grid">
+                                        <div class="in-user-grid_action_box">
+
+                                            @if ($user->role == 'user' || $user->role == 'admin')
+                                                <a href="{{ route('block.user', $user->id) }}" class="in-user-action"
+                                                    title="Разблокировать пользователя">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18"
+                                                        viewBox="0 0 17 18" fill="none">
+                                                        <path
+                                                            d="M4.80076 8.20222V5.00302C4.79976 4.01131 5.16729 3.0546 5.832 2.31863C6.4967 1.58266 7.41116 1.11992 8.39785 1.02026C9.38455 0.920589 10.3731 1.1911 11.1715 1.77928C11.97 2.36746 12.5214 3.23134 12.7188 4.20322M3.20116 8.20222H14.3983C15.2818 8.20222 15.9979 8.91838 15.9979 9.80181V15.4004C15.9979 16.2838 15.2818 17 14.3983 17H3.20116C2.31773 17 1.60156 16.2838 1.60156 15.4004V9.80181C1.60156 8.91838 2.31773 8.20222 3.20116 8.20222Z"
+                                                            stroke="#475467" stroke-width="1.5996" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('unblock.user', $user->id) }}" class="in-user-action"
+                                                    title="Заблокировать пользователя">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18"
+                                                        viewBox="0 0 17 18" fill="none">
+                                                        <path
+                                                            d="M4.80156 8.2V5C4.80156 3.93913 5.22299 2.92172 5.97314 2.17157C6.72328 1.42143 7.7407 1 8.80156 1C9.86243 1 10.8798 1.42143 11.63 2.17157C12.3801 2.92172 12.8016 3.93913 12.8016 5V8.2M3.20156 8.2H14.4016C15.2852 8.2 16.0016 8.91634 16.0016 9.8V15.4C16.0016 16.2837 15.2852 17 14.4016 17H3.20156C2.31791 17 1.60156 16.2837 1.60156 15.4V9.8C1.60156 8.91634 2.31791 8.2 3.20156 8.2Z"
+                                                            stroke="#475467" stroke-width="1.6" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="grid-element in-user-grid">
-                                <p class="in-user-grid_dataemail"</p>
-                            </div>
-                            <div class="grid-element in-user-grid">
-                                <a href="" class="in-user-grid_link">webfolio.ru/<?= $user['login'] ?></a>
-                            </div>
-                            <div class="grid-element in-user-grid">
-                                <div class="in-user-grid_action_box">
-                                    <a href="" class="in-user-action">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18"
-                                            viewBox="0 0 17 18" fill="none">
-                                            <path
-                                                d="M4.80076 8.20222V5.00302C4.79976 4.01131 5.16729 3.0546 5.832 2.31863C6.4967 1.58266 7.41116 1.11992 8.39785 1.02026C9.38455 0.920589 10.3731 1.1911 11.1715 1.77928C11.97 2.36746 12.5214 3.23134 12.7188 4.20322M3.20116 8.20222H14.3983C15.2818 8.20222 15.9979 8.91838 15.9979 9.80181V15.4004C15.9979 16.2838 15.2818 17 14.3983 17H3.20116C2.31773 17 1.60156 16.2838 1.60156 15.4004V9.80181C1.60156 8.91838 2.31773 8.20222 3.20116 8.20222Z"
-                                                stroke="#475467" stroke-width="1.5996" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-
-                                    <a href="" class="in-user-action">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18"
-                                            viewBox="0 0 17 18" fill="none">
-                                            <path
-                                                d="M4.80156 8.2V5C4.80156 3.93913 5.22299 2.92172 5.97314 2.17157C6.72328 1.42143 7.7407 1 8.80156 1C9.86243 1 10.8798 1.42143 11.63 2.17157C12.3801 2.92172 12.8016 3.93913 12.8016 5V8.2M3.20156 8.2H14.4016C15.2852 8.2 16.0016 8.91634 16.0016 9.8V15.4C16.0016 16.2837 15.2852 17 14.4016 17H3.20156C2.31791 17 1.60156 16.2837 1.60156 15.4V9.8C1.60156 8.91634 2.31791 8.2 3.20156 8.2Z"
-                                                stroke="#475467" stroke-width="1.6" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                    </a>
-
-                                
-                                    <!-- <a class="in-user-action" id="ShareMyProfile" >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                            <path d="M3.4 11.4H2.6C2.17565 11.4 1.76869 11.2314 1.46863 10.9314C1.16857 10.6313 1 10.2243 1 9.8V2.6C1 2.17565 1.16857 1.76869 1.46863 1.46863C1.76869 1.16857 2.17565 1 2.6 1H9.8C10.2243 1 10.6313 1.16857 10.9314 1.46863C11.2314 1.76869 11.4 2.17565 11.4 2.6V3.4M8.2 6.6H15.4C16.2837 6.6 17 7.31634 17 8.2V15.4C17 16.2837 16.2837 17 15.4 17H8.2C7.31634 17 6.6 16.2837 6.6 15.4V8.2C6.6 7.31634 7.31634 6.6 8.2 6.6Z" stroke="#475467" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </a> -->
-                                </div>
-                            </div>
+                            @empty
+                                <p class="grid-title">В системе нет пользователей.</p>
+                            @endforelse
                         </div>
-                        
+                    </div>
+                </div>
+
+                <!-- Tariffs Tab -->
+                <div class="tab-content" id="tariffs">
+                    <div class="admin-title_box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <g clip-path="url(#clip0_290_5485)">
+                                <path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="#D8DDE1"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_290_5485">
+                                    <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <div class="admin-title_textbox">
+                            <a href="" class="admin-title">Панель администратора</a>
+                            /
+                            <a href="" class="admin-title_dop">Управление тарифами</a>
+                        </div>
+
+                        <a href="{{ route('show.add.tariff') }}" class="base-btn-action">
+                            <div class="base-btn-action-plus-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
+                                    viewBox="0 0 10 10" fill="none">
+                                    <path
+                                        d="M7.80204 4.44428H5.55552V2.19775C5.55552 1.90435 5.30725 1.6665 4.99996 1.6665C4.69267 1.6665 4.4444 1.90435 4.4444 2.19775V4.44428H2.19788C1.90447 4.44428 1.66663 4.69255 1.66663 4.99984C1.66663 5.30713 1.90447 5.55539 2.19788 5.55539H4.4444V7.80192C4.4444 8.09532 4.69267 8.33317 4.99996 8.33317C5.30725 8.33317 5.55552 8.09532 5.55552 7.80192V5.55539H7.80204C8.09545 5.55539 8.33329 5.30713 8.33329 4.99984C8.33329 4.69255 8.09545 4.44428 7.80204 4.44428Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                            <div class="base-btn-action-content">
+                                Добавить тариф
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="admin-section_content_box">
+                        <div class="admin-users">
+                            <!-- шапка сетки -->
+                            <div class="admin-users_box users-grid">
+                                <div class="grid-element grid-title">Тариф</div>
+                                <div class="grid-element grid-title">Стоимость</div>
+                                <div class="grid-element grid-title">Срок действия</div>
+                                <div class="grid-element grid-title"> </div>
+                            </div>
+
+                            <!-- пользователи -->
+                            @forelse ($tariffs as $tariff)
+                                <div class="admin-users_box users-grid">
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            {{ $tariff->name }}
+                                        </p>
+                                    </div>
+
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            {{ $tariff->price . ' рублей' }}
+                                        </p>
+                                    </div>
+
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            {{ $tariff->duration . ' дней' }}
+                                        </p>
+                                    </div>
+
+                                    <div class="grid-element in-user-grid">
+                                        <div class="in-user-grid_action_box">
+                                            <div class="user-exp_actions">
+                                                <!-- удаление опыта -->
+                                                <a href="{{ route('show.delete.tariff', $tariff->id) }}"
+                                                    class="user-exp_action circle delete-experience" title="Удалить">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20"
+                                                        viewBox="0 0 16 20" fill="none">
+                                                        <path
+                                                            d="M10.9091 19.4545H5.09091C4.12649 19.4545 3.20156 19.0714 2.51961 18.3894C1.83766 17.7075 1.45455 16.7826 1.45455 15.8181V7.09086C1.45455 6.89798 1.53117 6.713 1.66756 6.57661C1.80395 6.44021 1.98893 6.36359 2.18182 6.36359C2.3747 6.36359 2.55969 6.44021 2.69608 6.57661C2.83247 6.713 2.90909 6.89798 2.90909 7.09086V15.8181C2.90909 16.3968 3.13896 16.9517 3.54813 17.3609C3.9573 17.7701 4.51226 18 5.09091 18H10.9091C11.4877 18 12.0427 17.7701 12.4519 17.3609C12.861 16.9517 13.0909 16.3968 13.0909 15.8181V7.09086C13.0909 6.89798 13.1675 6.713 13.3039 6.57661C13.4403 6.44021 13.6253 6.36359 13.8182 6.36359C14.0111 6.36359 14.1961 6.44021 14.3324 6.57661C14.4688 6.713 14.5455 6.89798 14.5455 7.09086V15.8181C14.5455 16.7826 14.1623 17.7075 13.4804 18.3894C12.7984 19.0714 11.8735 19.4545 10.9091 19.4545Z"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M15.2727 4.90905H0.727273C0.534388 4.90905 0.349403 4.83242 0.213013 4.69603C0.0766233 4.55964 0 4.37466 0 4.18177C0 3.98889 0.0766233 3.8039 0.213013 3.66751C0.349403 3.53112 0.534388 3.4545 0.727273 3.4545H15.2727C15.4656 3.4545 15.6506 3.53112 15.787 3.66751C15.9234 3.8039 16 3.98889 16 4.18177C16 4.37466 15.9234 4.55964 15.787 4.69603C15.6506 4.83242 15.4656 4.90905 15.2727 4.90905Z"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M10.9091 4.90905H5.09091C4.89802 4.90905 4.71304 4.83242 4.57665 4.69603C4.44026 4.55964 4.36364 4.37466 4.36364 4.18177V2.72723C4.36364 2.14857 4.59351 1.59362 5.00268 1.18445C5.41185 0.77528 5.9668 0.54541 6.54545 0.54541H9.45455C10.0332 0.54541 10.5882 0.77528 10.9973 1.18445C11.4065 1.59362 11.6364 2.14857 11.6364 2.72723V4.18177C11.6364 4.37466 11.5597 4.55964 11.4234 4.69603C11.287 4.83242 11.102 4.90905 10.9091 4.90905ZM5.81818 3.4545H10.1818V2.72723C10.1818 2.53434 10.1052 2.34936 9.96881 2.21297C9.83242 2.07658 9.64743 1.99996 9.45455 1.99996H6.54545C6.35257 1.99996 6.16759 2.07658 6.0312 2.21297C5.89481 2.34936 5.81818 2.53434 5.81818 2.72723V3.4545Z"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M6.54545 15.0909C6.35257 15.0909 6.16759 15.0142 6.0312 14.8779C5.89481 14.7415 5.81818 14.5565 5.81818 14.3636V9.27268C5.81818 9.0798 5.89481 8.89481 6.0312 8.75842C6.16759 8.62203 6.35257 8.54541 6.54545 8.54541C6.73834 8.54541 6.92332 8.62203 7.05971 8.75842C7.1961 8.89481 7.27273 9.0798 7.27273 9.27268V14.3636C7.27273 14.5565 7.1961 14.7415 7.05971 14.8779C6.92332 15.0142 6.73834 15.0909 6.54545 15.0909Z"
+                                                            fill="white" />
+                                                        <path
+                                                            d="M9.45455 15.0909C9.26166 15.0909 9.07668 15.0142 8.94029 14.8779C8.8039 14.7415 8.72727 14.5565 8.72727 14.3636V9.27268C8.72727 9.0798 8.8039 8.89481 8.94029 8.75842C9.07668 8.62203 9.26166 8.54541 9.45455 8.54541C9.64743 8.54541 9.83242 8.62203 9.96881 8.75842C10.1052 8.89481 10.1818 9.0798 10.1818 9.27268V14.3636C10.1818 14.5565 10.1052 14.7415 9.96881 14.8779C9.83242 15.0142 9.64743 15.0909 9.45455 15.0909Z"
+                                                            fill="white" />
+                                                    </svg>
+                                                </a>
+                                                <!-- редактирование опыта -->
+                                                <a href="{{ route('show.edit.tariff', $tariff->id) }}"
+                                                    class="user-exp_action circle edit-experience" title="Изменить">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14" fill="none">
+                                                        <path
+                                                            d="M0 11.0829V14H2.91707L11.5244 5.39269L8.60731 2.47562L0 11.0829ZM13.7725 3.1446C14.0758 2.84123 14.0758 2.34727 13.7725 2.0439L11.9561 0.227532C11.6527 -0.0758439 11.1588 -0.0758439 10.8554 0.227532L9.43187 1.65106L12.3489 4.56813L13.7725 3.1446Z"
+                                                            fill="white" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+
+                                <div class="admin_default_window">
+                                    <p>В системе нет тарифов.</p>
+                                </div>
+                            @endforelse
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Subscriptions Tab -->
+                <div class="tab-content" id="subscriptions">
+                    <div class="admin-title_box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none">
+                            <g clip-path="url(#clip0_290_5485)">
+                                <path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z" stroke="#D8DDE1"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_290_5485">
+                                    <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                        <div class="admin-title_textbox">
+                            <a href="#users" class="admin-title">Панель администратора</a>
+                            /
+                            <a href="#users" class="admin-title_dop">Подписки пользователей</a>
+                        </div>
+                    </div>
+
+                    <div class="admin-section_content_box">
+                        <div class="admin-users">
+                            <!-- шапка сетки -->
+                            <div class="admin-users_box users-grid">
+                                {{-- <div class="grid-element">ID</div> --}}
+                                <div class="grid-element grid-title">Логин</div>
+                                <div class="grid-element grid-title">Тариф</div>
+                                <div class="grid-element grid-title">Срок действия</div>
+                                <div class="grid-element grid-title">Статус</div>
+                            </div>
+
+                            <!-- пользователи -->
+                            @forelse ($subscriptions as $subscription)
+                                <div class="admin-users_box users-grid">
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            @if($subscription->user && !empty($subscription->user->name) && !empty($subscription->user->surname))
+                                                {{ $subscription->user->name . ' ' . $subscription->user->surname }}
+                                            @else
+                                                {{ $subscription->user->login }}
+                                            @endif
+                                        </p>
+                                    </div>
+
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            {{ $subscription->tariff->name }}
+                                        </p>
+                                    </div>
+
+                                    <div class="grid-element in-user-grid">
+                                        <p class="in-user-grid_dataemail">
+                                            {{ \Carbon\Carbon::parse($subscription->start_date)->format('d.m.Y') }} - {{ \Carbon\Carbon::parse($subscription->end_date)->format('d.m.Y') }}
+                                        </p>
+                                    </div>
+
+                                    <div class="grid-element in-user-grid is_active_box">
+                                        @if($subscription->is_active)
+                                            <span class="in-user-grid_dataemail is_active_text yes">Активна</span>
+                                        @else
+                                            <span class="in-user-grid_dataemail is_active_text no">Не активна</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            @empty
+
+                                <div class="admin_default_window">
+                                    <p>Нет активных подписок.</p>
+                                </div>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Copy User Link -->
-    <script src="{{ asset('js/share-user-profile.js') }}" defer></script>
-
+    <script src="{{ asset('js/admin-tabs.js') }}" defer></script>
 
     <style>
-        header,
-        footer {
+        .tab-content {
             display: none;
         }
 
-        body {
-            background: #F8F8F8;
+        .tab-content.active {
+            display: block !important;
+        }
+
+        .admin-navigation_link {
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .admin-navigation_link.active {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-navigation_link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #1D2939;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 @endsection

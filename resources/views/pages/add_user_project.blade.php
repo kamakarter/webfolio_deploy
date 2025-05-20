@@ -1,33 +1,24 @@
 @extends('app')
 
 @section('content')
-    <style>
-        header {
-            display: none;
-        }
-
-        .form-div {
-            margin-bottom: 32px;
-        }
-    </style>
-
     <div class="form-section_head"></div>
 
     <section class="form-section">
         <div class="container">
             <div class="form-section_backlink_box">
-                <button onclick="window.history.back(); return false;" class="backlink">
+                <a href="{{ route('show.account') }}" class="backlink">
                     <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.40705 1.09294L1 5.49999M1 5.49999L5.40705 9.90704M1 5.49999L14.75 5.49999"
                             stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
                     <p class="backlink_text">Вернуться назад</p>
-                </button>
+                </a>
             </div>
 
             <div class="form-canvas shadow-s">
-                <form action="#" method="post" class="form-box" name="add-project" enctype="multipart/form-data">
+                <form action="{{ route('add.user.project') }}" method="post" class="form-box" name="add-project" enctype="multipart/form-data">
+                    @csrf
                     <p class="form-title">
                         Добавьте новый проект
                     </p>
@@ -38,10 +29,13 @@
                             Название проекта*
                         </label>
 
-                        <input type="text" name="name" class="form-input" placeholder="Введите название проекта">
+                        <input type="text" name="title" class="form-input"
+                            placeholder="Введите название проекта"
+                            value="{{ old('title') }}">
 
-                        <p class="text-error hidden">
-                        </p>
+                        @error('title')
+                            <p class="text-error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-column-2">
@@ -52,10 +46,12 @@
                             </label>
 
                             <input type="text" name="deploy_link" class="form-input"
-                                placeholder="Укажите URL-адрес на сайт">
+                                placeholder="Укажите URL-адрес на сайт"
+                                value="{{ old('deploy_link') }}">
 
-                            <p class="text-error hidden">
-                            </p>
+                            @error('deploy_link')
+                                <p class="text-error">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- поле ввода -->
@@ -65,11 +61,29 @@
                             </label>
 
                             <input type="text" name="github_link" class="form-input"
-                                placeholder="Укажите URL-адрес на репозиторий">
+                                placeholder="Укажите URL-адрес на репозиторий"
+                                value="{{ old('github_link') }}">
 
-                            <p class="text-error hidden">
-                            </p>
+                            @error('github_link')
+                                <p class="text-error">{{ $message }}</p>
+                            @enderror
                         </div>
+                    </div>
+
+                    <!-- поле ввода -->
+                    <div class="form-div">
+                        <label for="description" class="form-label">
+                            Описание проекта
+                        </label>
+
+                        <textarea name="description" 
+                            class="form-textarea" 
+                            placeholder="Придумайте краткое описание для вашего проекта"
+                        >{{ old('description') }}</textarea>
+
+                        @error('description')
+                            <p class="text-error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- поле ввода -->
@@ -87,8 +101,9 @@
 
                         <span id="fileName"></span>
 
-                        <p class="text-error hidden">
-                        </p>
+                        @error('cover')
+                            <p class="text-error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- btns -->

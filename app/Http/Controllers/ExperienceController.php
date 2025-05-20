@@ -30,11 +30,11 @@ class ExperienceController extends Controller
             'end_date' => 'required|date',
         ]);
 
-        if ($request->hasFile('company_name')) {
-            $company_name = uniqid() . '.' . $request->file('company_name')->getClientOriginalExtension();
-            $validated['company_name'] = $company_name;
+        if ($request->hasFile('company_logotype')) {
+            $company_logotype = uniqid() . '.' . $request->file('company_logotype')->getClientOriginalExtension();
+            $validated['company_logotype'] = $company_logotype;
 
-            $request->file('company_name')->move(public_path('company_logotypes'), $company_name);
+            $request->file('company_logotype')->move(public_path('company_logotypes'), $company_logotype);
         }
 
         Experience::create([
@@ -47,12 +47,48 @@ class ExperienceController extends Controller
             'company_logotype' => $validated['company_logotype'],
         ]);
 
-        return redirect()->route('show.account');
+        // return redirect()->route('show.account');
+        return redirect()->route('show.account') . '#user-exp';
     }
 
     // EDIT EXPERIENCE
 
-    // ------------------------------------------------------------
+    public function showEditExperience($id)
+    {
+        $experience = Experience::find($id);
+
+        return view('pages.edit_user_experience', compact('experience'));
+    }   
+
+    public function editExperience(Request $request, $id)
+    {
+        $experience = Experience::find($id);
+
+        $validated = $request->validate([
+            'profession' => 'required|string|max:255',
+            'company_logotype' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:5200',
+            'company_name' => 'required|string|max:255',
+            'tasks' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
+
+        if ($request->hasFile('company_logotype')) {
+            $company_logotype = uniqid() . '.' . $request->file('company_logotype')->getClientOriginalExtension();
+            $validated['company_logotype'] = $company_logotype;
+
+            $request->file('company_logotype')->move(public_path('company_logotypes'), $company_logotype);
+        }
+        else {
+            $validated['company_logotype'] = $experience->company_logotype;
+        }
+
+        $experience->update($validated);
+
+        // return redirect()->route('show.account');
+        return redirect()->route('show.account') . '#user-exp';
+
+    }
 
     // DELETE EXPERIENCE
 
@@ -69,7 +105,8 @@ class ExperienceController extends Controller
 
         $experience->delete();
 
-        return redirect()->route('show.account');
+        // return redirect()->route('show.account'); 
+        return redirect()->route('show.account') . '#user-exp';
     }
     
     

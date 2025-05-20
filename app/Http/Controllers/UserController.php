@@ -55,9 +55,28 @@ class UserController extends Controller
             'password.required' => 'Пароль обязателен для заполнения.',
         ]);
 
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Пользователя с такой почтой не существует.',
+            ]);
+        }
+
+        if ($user->role === 'blocked') {
+            return back()->withErrors([
+                'email' => 'Ваш аккаунт заблокирован. Обратитесь в поддержку.',
+            ]);
+        }
+
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
-            return redirect()->route('show.account');
+
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('show.admin');
+            } else {
+                return redirect()->route('show.account');
+            }
         }
 
         return back()->withErrors([
@@ -157,7 +176,7 @@ class UserController extends Controller
             $request->file('user_bg')->move(public_path('backgrounds'), $filename);
 
             $user->update([
-                'user_bg' => $filename,  
+                'user_bg' => $filename,
             ]);
         }
 
