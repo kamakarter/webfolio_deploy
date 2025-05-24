@@ -19,7 +19,7 @@ class CheckAuth
                 return $next($request);
         }
 
-        return redirect()->route('show.signin');
+        return redirect()->route('show.error.not.auth');
 
 
         

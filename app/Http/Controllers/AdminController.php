@@ -29,7 +29,7 @@ class AdminController extends Controller
         $user->role = 'blocked';
         $user->save();
         
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Пользователь успешно заблокирован');
     }
 
     public function unblockedUser($id)
@@ -37,6 +37,6 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->role = 'user';
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Пользователь успешно разблокирован');
     }
 }

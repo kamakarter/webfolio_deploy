@@ -74,7 +74,7 @@
                     <!-- btns -->
                     <div class="form-section_btns">
                         <button type="submit" class="btn btn-m form-btn" name="add-project">
-                            Добавить проект
+                            Оплатить подписку
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="11" viewBox="0 0 16 11"
                                 fill="none">
                                 <path

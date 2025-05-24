@@ -9,25 +9,28 @@ use Illuminate\Http\Request;
 class TariffController extends Controller
 {
     public function showTariffs()
-    {
+{
+    $subscription = null;
     
-        $subscription = Subscription::where('user_id', auth()->user()->id)->get()->first();
-
-        if ($subscription) {
-            if ($subscription->end_date < now()) {
-                $subscription->is_active = false;
-                $subscription->save();
-            } else if ($subscription->end_date > now()) {
-                $subscription->is_active = true;
-                $subscription->save();
-            }
-            }
+    if (auth()->check()) {
+        $subscription = Subscription::where('user_id', auth()->id())->first();
         
-
-
-        $tariffs = Tariff::all();
-        return view('pages.tariffs', compact('tariffs', 'subscription'));
+        if ($subscription) {
+            // Обновляем статус только если end_date изменился
+            $newStatus = $subscription->end_date > now();
+            if ($subscription->is_active != $newStatus) {
+                $subscription->is_active = $newStatus;
+                $subscription->save();
+            }
+        }
     }
+
+    $tariffs = Tariff::all();
+    return view('pages.tariffs', compact('tariffs', 'subscription'));
+}
+
+
+    
 
     public function showAddTariffPage()
     {
@@ -47,7 +50,7 @@ class TariffController extends Controller
 
         Tariff::create($validated);
 
-        return redirect()->route('show.admin');
+        return redirect()->route('show.admin')->with('success', 'Новый тариф успешно добавлен');
     }
 
 
@@ -71,7 +74,7 @@ class TariffController extends Controller
 
 
         $tariff->update($request->all());
-        return redirect()->route('show.admin');
+        return redirect()->route('show.admin')->with('success', 'Тариф ' . $tariff->name . ' успешно обновлен');
     }
 
 
@@ -85,7 +88,7 @@ class TariffController extends Controller
     {
         $tariff = Tariff::find($id);
         $tariff->delete();
-        return redirect()->route('show.admin');
+        return redirect()->route('show.admin')->with('success', 'Тариф ' . $tariff->name . ' успешно удален');
     }
 
     

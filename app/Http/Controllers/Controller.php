@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -43,6 +44,11 @@ class Controller extends BaseController
         return view('includes.not_admin');
     }
 
+    public function showNotAuthPage()
+    {
+        return view('includes.not_auth');
+    }
+
     ### USER PAGES
 
     public function showSignUp()
@@ -57,9 +63,8 @@ class Controller extends BaseController
     
     public function showAccount()
     {
-        $experiences = Experience::where('user_id', auth()->user()->id)->get();
-        $projects = Project::where('user_id', auth()->user()->id)->get();
-
+        $experiences = Experience::where('user_id', Auth::user()->id)->get();
+        $projects = Project::where('user_id', Auth::user()->id)->get();
 
         return view('pages.account', compact('experiences', 'projects'));
     }
@@ -68,8 +73,9 @@ class Controller extends BaseController
     {
         $user = User::where('login', $login)->first();
 
-        $experiences = Experience::where('user_id', $user->id)->get();
-        $projects = Project::where('user_id', $user->id)->get();
+        $experiences = Experience::where('user_id', $user->login)->get();
+        $projects = Project::where('user_id', $user->login)->get();
+        
 
         return view('pages.show_user_account', compact('user', 'experiences', 'projects'));
     }

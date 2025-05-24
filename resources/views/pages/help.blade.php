@@ -4,14 +4,14 @@
     <!-- help and Q&A page -->
     <section class="help" id="help">
         <div class="container">
-            <button onclick="window.history.back(); return false;" class="backlink">
+            <a href="{{ route('show.home') }}" class="backlink">
                 <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.40705 1.09294L1 5.49999M1 5.49999L5.40705 9.90704M1 5.49999L14.75 5.49999" stroke="#667085"
                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
 
                 <p class="backlink_text">Вернуться назад</p>
-            </button>
+            </a>
 
             <h3 class="help-title">
                 Страница помощи и поддержки<br>платформы WebFolio

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -11,6 +12,15 @@ class ProjectController extends Controller
     // Добавление проекта
     public function showAddProject()
     {
+        $subscription = Subscription::where('user_id', auth()->user()->id)->first();
+        $projects = Project::where('user_id', auth()->user()->id);
+
+        if (!$subscription || !$subscription->is_active) {
+            if ($projects->count() === 1) {
+                return redirect()->route('show.tariffs')->with('error', 'Вы можете добавить только 1 проект в портфолио. Оформите подписку в разделе Тарифы, чтобы добавить больше.');
+            }
+        }
+
         return view('pages.add_user_project');
     }
 
@@ -31,7 +41,7 @@ class ProjectController extends Controller
             $file->move(public_path('projects_covers'), $cover);
         }
 
-        Project::create([
+        $project = Project::create([
             'title' => $request->title,
             'cover' => 'projects_covers/' . $cover,
             'description' => $request->description,
@@ -41,7 +51,7 @@ class ProjectController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        return redirect()->route('show.account');
+        return redirect()->route('show.account')->with('success', 'Проект ' . $project->title . ' успешно добавлен');
     }
 
     // Редактирование проекта
@@ -85,7 +95,7 @@ class ProjectController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        return redirect()->route('show.account');
+        return redirect()->route('show.account')->with('success', 'Проект ' . $project->title . ' обновлен');
     }
 
     // Удаление проекта
@@ -100,7 +110,7 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         $project->delete();
-        return redirect()->route('show.account');
+        return redirect()->route('show.account')->with('success', 'Проект ' . $project->title . ' удален');
     }
 
     

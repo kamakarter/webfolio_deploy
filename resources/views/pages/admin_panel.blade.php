@@ -102,8 +102,6 @@
                         <p>Подписки</p>
                     </a>
 
-
-
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="admin-navigation_link" name="out2">

@@ -16,14 +16,7 @@
         <div class="container user_base_container">
             <div class="user_base_data">
                 <div class="user_avatar_frame">
-                    <a href="{{ route('show.upload.user.avatar') }}" class="user-avatar_edit_icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
-                            fill="none">
-                            <path
-                                d="M0 11.0829V14H2.91707L11.5244 5.39269L8.60731 2.47562L0 11.0829ZM13.7725 3.1446C14.0758 2.84123 14.0758 2.34727 13.7725 2.0439L11.9561 0.227532C11.6527 -0.0758439 11.1588 -0.0758439 10.8554 0.227532L9.43187 1.65106L12.3489 4.56813L13.7725 3.1446Z"
-                                fill="white" />
-                        </svg>
-                    </a>
+                    
                     @if ($user->user_avatar)
                         <img src="{{ asset($user->user_avatar) }}" alt="user-avatar" class="user-avatar">
                     @else
@@ -72,16 +65,17 @@
             </div>
 
             <div class="user_base_actions">
-                
-                <a href="" class="btn btn-s btn-1" id="ShareMyProfile" onclick="">
+                <a href="" class="btn btn-s btn-border">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12"
                         fill="none">
                         <path
                             d="M14.5612 4.70198L9.76122 0.338342C9.39759 -0.025294 8.96122 0.338342 8.96122 0.920161V3.10198C5.54304 3.10198 2.63395 5.21107 1.25213 8.04743C0.743042 8.99289 0.452133 10.0111 0.233951 11.0293C0.0884963 11.7565 1.17941 12.1202 1.61577 11.4656C3.21577 8.92016 5.90668 7.24743 8.96122 7.24743V9.64743C8.96122 10.2293 9.39759 10.5929 9.76122 10.2293L14.5612 5.86562C14.8521 5.57471 14.8521 4.99289 14.5612 4.70198Z"
                             fill="white" />
                     </svg>
-                    Поделиться резюме
+                    Скопировать ссылку
                 </a>
+
+                
             </div>
         </div>
     </section>
@@ -154,9 +148,9 @@
                                 Webfolio Link
                             </div>
 
-                            <a href="{{ $serverUrl = request()->getSchemeAndHttpHost(); }}{{ $user->login }}" class="user-link" target="_blank">
+                            <a href="{{ $serverUrl = request()->getSchemeAndHttpHost() . '/user/' . $user->login }}" class="user-link" target="_blank">
                                 <div class="user-link_placeholder">
-                                    {{ request()->getSchemeAndHttpHost() . '/' .  $user->login }}
+                                    {{ request()->getSchemeAndHttpHost() . '/user/' .  $user->login }}
                                 </div>
                                 <svg class="user-link_arrow" xmlns="http://www.w3.org/2000/svg" width="20"
                                     height="20" viewBox="0 0 20 20" fill="none">
@@ -402,12 +396,19 @@
                             </div>
                         </div>
                     @endforeach
+                    @else
+                    <div class="placeholder_for_user_data_about">
+                        <p class="user_data_about">
+                            Увы, но пока здесь нет ни одного опыта работы.
+                        </p>
+                    </div>
             @endif
             
         </div>
         </div>
     </section>
 
+    
     <!-- user projects -->
     <section class="user-projects" id="user-projects">
         <div class="container">
@@ -468,6 +469,12 @@
                             </div>
                         </div>
                     @endforeach
+                @else
+                    <div class="placeholder_for_user_data_about">
+                        <p class="user_data_about">
+                            Увы, но пока здесь нет ни одного проекта.
+                        </p>
+                    </div>
                 @endif
 
                 {{-- add project button --}}

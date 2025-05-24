@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-canvas shadow-s">
-                <form action="{{ route('upload.user.avatar', Auth::user()->id) }}" class="form-upload-box" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('upload.user.avatar', Auth::user()->id) }}" class="form-upload-box max-w-50" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
         

@@ -27,6 +27,10 @@ Route::get('/error/404', [Controller::class, 'showError404'])->name('show.error.
 // Страница с сообщением: у вас нет прав администратора
 Route::get('/error/not_admin', [Controller::class, 'showNotAdminPage'])->name('show.error.not.admin');
 
+// Страница с сообщением: у вас нет прав администратора
+Route::get('/error/not_auth', [Controller::class, 'showNotAuthPage'])->name('show.error.not.auth');
+
+
  // Authentication Routes
     Route::get('/signup', [Controller::class, 'showSignUp'])->name('show.signup');
     Route::post('/register', [UserController::class, 'register'])->name('register');
@@ -99,7 +103,7 @@ Route::middleware('check.auth')->group(function(){
 
     // Удаление опытаяработы
     Route::get('/delete-experience/{id}', [ExperienceController::class, 'showDeleteExperience'])->name('show.delete.user.experience');
-    Route::post('/delete-experience/{id}/confirm', [ExperienceController::class, 'deleteExperience'])->name('delete.user.experience');
+    Route::delete('/delete-experience/{id}/confirm', [ExperienceController::class, 'deleteExperience'])->name('delete.user.experience');
 
 
 

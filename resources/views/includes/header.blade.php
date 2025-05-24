@@ -29,7 +29,7 @@
                 <a href="{{ route('show.home')}}#steps" class="nav_link scrolled">Как это работает</a>
                 <a href="{{ route('show.home')}}#info" class="nav_link scrolled">Как начать</a>
                 <a href="{{ route('show.help')}}" class="nav_link scrolled">Поддержка</a>                
-                <a href="{{ route('show.tariffs')}}" class="nav_link scrolled">Подписка</a>                
+                <a href="{{ route('show.tariffs')}}" class="nav_link scrolled">Тарифы</a>                
             </nav>
 
             <!-- динамичный элемент -->

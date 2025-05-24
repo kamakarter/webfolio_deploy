@@ -30,6 +30,6 @@ class SubscriptionController extends Controller
             'end_date' => now()->addDays($tariff->duration),
         ]);
 
-        return redirect()->route('show.tariffs');
+        return redirect()->route('show.tariffs')->with('success', 'Подписка на тариф ' . $tariff->name . ' оформлена');
     }
 }

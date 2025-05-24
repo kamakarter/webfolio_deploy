@@ -38,7 +38,7 @@
 
                 <div class="banner-main_box">
                     <h1 class="banner-title fade-in-down">
-                        WebFolio — cоздай портфолио в пару кликов!
+                        Вебфолио — cоздай портфолио в пару кликов!
                     </h1>
 
                     <p class="banner-subtitle fade-in-down">
@@ -116,14 +116,14 @@
             <div class="info-first_box">
                 <img src="{{ asset('storage/images/star-info.svg') }}" alt="star" class="animate">
                 <div class="info-first_inner_box">
-                    <h3 class="info-title animate">В WebFolio есть практически все, что нужно разработчикам для идеального портфолио</h3>
+                    <h3 class="info-title animate">В вебфолио есть практически все, что нужно разработчикам для идеального портфолио</h3>
 
                     <div class="info-logo_box animate">
                         <img src="{{ asset('storage/images/logo-icon.svg') }}" alt="logotype">
 
                         <div class="info-logo_inner_box">
-                            <p class="info-logo_name">Webfolio Team</p>
-                            <p class="info-logo_subname">Сreate a portfolio together</p>
+                            <p class="info-logo_name">Команда Веьфолио</p>
+                            <p class="info-logo_subname">Создадим портфолио вместе</p>
                         </div>
                     </div>
                 </div>

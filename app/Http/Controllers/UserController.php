@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,8 @@ class UserController extends Controller
         ]);
 
 
-        return redirect()->route('show.signin');
+        return redirect()->route('show.signin')->with('success', 'Регистрация прошла успешно. Пожалуйста, авторизуйтесь.');
+
     }
 
     // login
@@ -75,7 +77,7 @@ class UserController extends Controller
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('show.admin');
             } else {
-                return redirect()->route('show.account');
+                return redirect()->route('show.account')->with('success', 'Вы успешно вошли в свой аккаунт.');
             }
         }
 
@@ -90,7 +92,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('show.signin');
+        return redirect()->route('show.signin')->with('success', 'Вы вышли из аккаунта');
     }
 
 
@@ -123,7 +125,7 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('show.account');
+        return redirect()->route('show.account')->with('success', 'Ваши данные успешно обновлены');
     }
 
     public function showUploadUserAvatar()
@@ -154,11 +156,17 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect()->route('show.account');
+        return redirect()->route('show.account')->with('success', 'Ваш аватар успешно обновлен');
     }
 
     public function addUserBackground()
     {
+        $subscription = Subscription::where('user_id', auth()->user()->id)->first();
+
+        if (!$subscription || !$subscription->is_active) {
+            return redirect()->route('show.tariffs')->with('error', 'Доступно только при подписке. Оформите подписку в разделе Тарифы, чтобы загружать фон.');
+        }
+
         return view('pages.add_user_bg');
     }
 
@@ -180,6 +188,6 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect()->route('show.account');
+        return redirect()->route('show.account')->with('success', 'Фоновое изображение обновлено');
     }
 }
