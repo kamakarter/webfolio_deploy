@@ -23,13 +23,9 @@ Route::get('/policy', [Controller::class, 'showPolicyPage'])->name('show.policy'
 // Страница с ошибкой 404
 Route::get('/error/404', [Controller::class, 'showError404'])->name('show.error.404');
 
-
-// Страница с сообщением: у вас нет прав администратора
+// Страница с сообщением
 Route::get('/error/not_admin', [Controller::class, 'showNotAdminPage'])->name('show.error.not.admin');
-
-// Страница с сообщением: у вас нет прав администратора
 Route::get('/error/not_auth', [Controller::class, 'showNotAuthPage'])->name('show.error.not.auth');
-
 
  // Authentication Routes
     Route::get('/signup', [Controller::class, 'showSignUp'])->name('show.signup');
@@ -41,9 +37,6 @@ Route::get('/error/not_auth', [Controller::class, 'showNotAuthPage'])->name('sho
 
     // Просмотр аккаунта (публичный)
     Route::get('/user/{login}', [Controller::class, 'showUserAccount'])->name('show.user.account');
-
-    
-
 
 
 
@@ -86,6 +79,8 @@ Route::middleware('check.auth')->group(function(){
     // Добавление и загрузка аватара
     Route::get('/upload-avatar', [UserController::class, 'showUploadUserAvatar'])->name('show.upload.user.avatar');
     Route::put('/upload-avatar/{id}', [UserController::class, 'uploadUserAvatar'])->name('upload.user.avatar');
+
+
 
     // Добавление и загрузка фонового изображения
     Route::get('/add-background', [UserController::class, 'addUserBackground'])->name('show.add.user.background');

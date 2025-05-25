@@ -88,6 +88,8 @@
         </div>
     </section>
 
+    
+
     <script src="{{ asset('js/header-normalize.js') }}"></script>
     <script src="{{ asset('js/input-file-normalize-for-error.js') }}"></script>
 @endsection
