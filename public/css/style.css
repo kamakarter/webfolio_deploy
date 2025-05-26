@@ -298,6 +298,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 4px;
+    max-width: 85%;
 }
 
 .banner-avatar {
@@ -988,6 +989,7 @@ footer {
 }
 
 .user_resume_box {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 270px;
     column-gap: 30px;

@@ -36,7 +36,7 @@
     .steps_box {
         margin-top: 44px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         column-gap: 20px;
         row-gap: 20px;
     }
@@ -173,7 +173,7 @@
     }
 
     .banner-title {
-        font-size: 48px;
+        font-size: 44px;
     } 
 
     .banner-subtitle {
@@ -583,18 +583,20 @@
     } 
 
     .banner-subtitle {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .banner-btns_box {
-        width: 50%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 28px;
     }
 
     .banner-btns_box .btn {
-        max-width: auto;
+        max-width: 100%;
+        width: 100%;
+
     }
 
     .banner-btns_box .btn br {
@@ -606,26 +608,38 @@
     }
 
     .banner-image-for-bg.one {
-        scale: 0.75;
-        left: -5%;
-        top: 20%;
+        scale: 0.5;
+        display: none;
+        left: 0%;
+        top: 10%;
     }
 
     .banner-image-for-bg.two {
-        scale: 0.75;
+        scale: 0.5;
+        display: none;
         right: 0%;
-        top: 22%;
+        top: 10%;
     }
 
     .banner-image-for-bg.three {
-        scale: 0.75;
+        scale: 0.5;
+        display: none;
         right: -2%;
-        bottom: 7%;
+        bottom: 0%;
     }
 
     .banner-avatar {
-        width: 72px;
+        width: 44px;
     }
+
+    .banner-users_box_title {
+        font-size: 14px;
+    }
+
+    .banner-title {
+        font-size: 32px;
+    } 
+
 
     .user_avatar_frame {
     position: relative;
@@ -651,12 +665,37 @@
         width: 100%;
     }
 
+    .info-title {
+        font-size: 27px;
+    }
+
+    .info-logo_box img {
+        scale: 0.75;
+    }
+
+    .info-logo_name {
+        font-size: 20px;
+    }
+
+    .info-logo_subname {
+        font-size: 16px;
+    }
+
+    .info-first_inner_box {
+        gap: 20px;
+    }
+
+    .info-logo_box {
+        margin-top: 16px;
+        margin: 0;
+        padding: 0;
+    }
 
     /*  */
 
 
     .steps-title, h2 {
-        font-size: 48px;
+        font-size: 27px;
     }
 
     .steps_box {
@@ -706,7 +745,7 @@
     }
 
     .get-started_title {
-        font-size: 48px;
+        font-size: 36px;
         max-width: 75%;
         text-align: center;
     }
@@ -901,7 +940,7 @@
 
     .form-section .form-canvas {
         width: 100%;
-        padding: 56px 44px;
+        padding: 32px 27px;
     }
 
     .file-upload {
@@ -961,9 +1000,24 @@
     }
     
     .error-grid_section {
-        max-width: 65%;
-        width: 65%;
+        max-width: 100%;
+        width: 100%;
         gap: 24px;
+    }
+
+    .error-grid h2 {
+        font-size: 27px;
+    }
+
+    .error-subtitle {
+        font-size: 16px;
+        max-width: 75%;
+        width: 75%;
+    }
+
+    .error-grid_section.image {
+        max-width: 100%;
+        width: 100%;
     }
 
 
@@ -1013,6 +1067,58 @@
 
     .user_data {
         margin-top: 0;
+    }
+
+    .info-item-title {
+        font-size: 24px;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: start;
+        flex-direction: column-reverse;
+        gap: 16px;
+    }
+
+    .info-item .right-section-image{
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .info-item .right-section-image img {
+        width: 100%;
+    }
+
+    .get-started_title,
+    .get-started_subtitle {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .get-started_title {
+        font-size: 27px;
+    }
+
+    .get-started_subtitle {
+        font-size: 16px;
+        max-width: 80%;
+        
+    }
+
+    .get-started .btn {
+        max-width: 75%;
+        width: 100%;
+    }
+    
+    .auth_reg_btns .reg_btn {
+        display: none;
+    }
+
+    .policy_grid {
+        display: flex;  
+        align-items: start;
+        flex-direction: column;
+        gap: 32px;
     }
 }
 

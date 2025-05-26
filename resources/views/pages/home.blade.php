@@ -17,8 +17,8 @@
                             <marquee 
                                 behavior="scroll" 
                                 direction="left" 
-                                scrollamount="5" 
-                                scrolldelay="0"
+                                scrollamount="10" 
+                                scrolldelay="-1"
                                 loop="-1"
                                 onmouseover="this.stop()" 
                                 onmouseout="this.start()"
@@ -223,7 +223,7 @@
         </div>
     </section>
 
-    <section class="get-started">
+    <section class="get-started" id="startfree">
         <div class="container get-started_grid">
             <div class="get-started_content-box">
                     <div class="canvas-for-logo">

@@ -62,8 +62,6 @@
     </div>
     @endif
 
-
-    
     @if (!isset($hideHeaderFooter) || !$hideHeaderFooter)
         @include('includes.header')
     @endif

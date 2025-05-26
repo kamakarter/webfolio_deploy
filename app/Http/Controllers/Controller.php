@@ -19,7 +19,7 @@ class Controller extends BaseController
     public function showHomePage()
     {
         $all_users_with_avatars = User::whereNotNull('user_avatar')->get();
-        $users_avatars = $all_users_with_avatars->shuffle()->take(8);
+        $users_avatars = $all_users_with_avatars->shuffle()->take(16);
 
         return view('pages.home', compact('users_avatars'));
     }
@@ -73,8 +73,8 @@ class Controller extends BaseController
     {
         $user = User::where('login', $login)->first();
 
-        $experiences = Experience::where('user_id', $user->login)->get();
-        $projects = Project::where('user_id', $user->login)->get();
+        $experiences = Experience::where('user_id', $user->id)->get();
+        $projects = Project::where('user_id', $user->id)->get();
         
 
         return view('pages.show_user_account', compact('user', 'experiences', 'projects'));

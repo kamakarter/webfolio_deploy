@@ -34,10 +34,9 @@
                     <p class="footer-nav_title animate">Информация</p>
 
                     <div class="footer-nav_links">
-                        <a href="?p=home#info" class="footer-nav-link animate">О проекте</a>
-                        <a href="?p=home#steps" class="footer-nav-link animate">Как это работает</a>
-                        <a href="?p=home#slider" class="footer-nav-link animate">Отзывы</a>
-                        <a href="https://t.me/thekamazag" class="footer-nav-link animate">Контакты</a>
+                        <a href="/#info" class="footer-nav-link animate">О проекте</a>
+                        <a href="/#startfree" class="footer-nav-link animate">Пробная подписка</a>
+                        <a href="/#steps" class="footer-nav-link animate">Как это работает</a>
                     </div>
                 </div>
 
@@ -45,11 +44,11 @@
                     <p class="footer-nav_title animate">Поддержка</p>
 
                     <div class="footer-nav_links">
-                        <a href="https://t.me/+edoLfW7Cc1FlMmJi" target="_blank" class="footer-nav-link animate">Наш блог</a>
                         <a href="{{ route('show.help') }}" class="footer-nav-link animate">Ответы на вопросы</a>
-                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Задать вопрос</a>
-                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Предложить идею</a>
-                        <a href="{{ route('show.help') }}" class="footer-nav-link animate">Оставить отзыв</a>
+                        <a href="{{ route('show.home') }}#info" class="footer-nav-link animate">Как начать</a>
+
+                        <a href="{{ route('show.policy') }}" class="footer-nav-link animate">Политика конфиденциальности</a>
+                        <a href="{{ route('show.tariffs') }}" class="footer-nav-link animate">Тарифы подписки</a>
                     </div>
                 </div>
 
@@ -58,8 +57,12 @@
 
                     <div class="footer-nav_links">
                         <a href="{{ route('show.home') }}" class="footer-nav-link animate">Главная</a>
-                        <a href="" class="footer-nav-link animate">Мой аккаунт</a>
-                        <a href="" class="footer-nav-link animate">Редактировать аккаунт</a>
+                        <a href="{{ route('show.account') }}" class="footer-nav-link animate">Мой аккаунт</a>
+                        @auth
+                        <a href="{{ route('show.user.account' , auth()->user()->login) }}" class="footer-nav-link animate">Мое резюме</a>
+                            
+                        @endauth
+                        {{-- <a href="" class="footer-nav-link animate">Редактировать аккаунт</a> --}}
                         
                     </div>
                 </div>
