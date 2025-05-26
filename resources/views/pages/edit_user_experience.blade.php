@@ -104,7 +104,7 @@
                         </label>
 
                         @if ($experience->company_logotype)
-                            <img src="{{ asset('company_logotypes/' . $experience->company_logotype) }}" alt="Логотип компании" class="form-div-file_img" style="height: 100px; object-fit: cover;">
+                            <img src="{{ asset('company_logotypes/' . $experience->company_logotype) }}" alt="Логотип компании" class="form-div-file_img">
                         @endif
         
                         <div class="file-upload">
@@ -139,7 +139,8 @@
         </div>
     </section>
 
-
+    <script src="{{ asset('js/header-normalize.js') }}" defer></script>
+    
     <script src="{{ asset('js/input-file-normalize-for-error.js') }}" defer></script>
     <script src="{{ asset('js/handle-form-error.js') }}" defer></script>
 @endsection

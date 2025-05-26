@@ -61,4 +61,7 @@
 
     <!-- Header Normalize -->
     <script src="{{ asset('js/header-normalize.js') }}"></script>
+
+<script src="{{ asset('js/header-color-change.js') }}" defer></script>
+
 @endsection

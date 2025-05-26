@@ -15,7 +15,7 @@
             </p>
             <div class="confirm_btns">
                 <button class="btn btn-m btn-red" type="submit" name="confirm">Удалить</button>
-                <a href="{{ route('show.admin') }}" class="btn btn-m btn-1">Вернуться назад</a>
+                <a href="{{ route('show.admin') }}" class="btn btn-m btn-1">Назад</a>
             </div>
         </form>
         </div>

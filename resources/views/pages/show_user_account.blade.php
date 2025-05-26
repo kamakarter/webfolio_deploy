@@ -65,17 +65,13 @@
             </div>
 
             <div class="user_base_actions">
-                <a href="" class="btn btn-s btn-border">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12"
-                        fill="none">
-                        <path
-                            d="M14.5612 4.70198L9.76122 0.338342C9.39759 -0.025294 8.96122 0.338342 8.96122 0.920161V3.10198C5.54304 3.10198 2.63395 5.21107 1.25213 8.04743C0.743042 8.99289 0.452133 10.0111 0.233951 11.0293C0.0884963 11.7565 1.17941 12.1202 1.61577 11.4656C3.21577 8.92016 5.90668 7.24743 8.96122 7.24743V9.64743C8.96122 10.2293 9.39759 10.5929 9.76122 10.2293L14.5612 5.86562C14.8521 5.57471 14.8521 4.99289 14.5612 4.70198Z"
-                            fill="white" />
+                
+                <a id="copyUserLink" class="btn btn-s btn-1" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5M11 9H20C21.1046 9 22 9.89543 22 11V20C22 21.1046 21.1046 22 20 22H11C9.89543 22 9 21.1046 9 20V11C9 9.89543 9.89543 9 11 9Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     Скопировать ссылку
                 </a>
-
-                
             </div>
         </div>
     </section>
@@ -494,13 +490,16 @@
             </div>
         </div>
     </section>
-
-    <script src="{{ asset('js/share-user-profile.js') }}" defer></script>
+    <div id="userValue" style="display: none;" >
+        {{config('app.url') . '/user/' . $user->login}}
+    </div> 
+    <script src="{{ asset('js/copy-link.js') }}"></script>
     <script src="{{ asset('js/header-normalize.js') }}" defer></script>
     <script src="{{ asset('js/input-file-normalize-for-error.js') }}" defer></script>
     {{-- <script src="{{ asset('js/modal.js') }}" defer></script> --}}
     <script src="{{ asset('js/user-about-me-accordeon.js') }}" defer></script>
-
+    
+     
     <style>
         .user_skills_box {
             margin-top: 24px;
@@ -530,5 +529,7 @@
             color: #344054;
             margin: 0;
         }
+
+        
     </style>
 @endsection
