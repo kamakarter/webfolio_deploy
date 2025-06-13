@@ -27,8 +27,7 @@ class ExperienceController extends Controller
         return view('pages.add_user_experience');
     }
 
-    public function addExperience(Request $request, $id)
-    {
+    public function addExperience(Request $request, $id){
         $user = User::find($id);
         $user_id = $user->id;
 
@@ -44,7 +43,6 @@ class ExperienceController extends Controller
         if ($request->hasFile('company_logotype')) {
             $company_logotype = uniqid() . '.' . $request->file('company_logotype')->getClientOriginalExtension();
             $validated['company_logotype'] = $company_logotype;
-
             $request->file('company_logotype')->move(public_path('company_logotypes'), $company_logotype);
         }
 
@@ -58,9 +56,10 @@ class ExperienceController extends Controller
             'company_logotype' => $validated['company_logotype'] ?? null,
         ]);
 
-        // return redirect()->route('show.account');
         return redirect()->route('show.account')->with('success', 'Опыт работы добавлен в резюме');
     }
+
+    
 
     // EDIT EXPERIENCE
 

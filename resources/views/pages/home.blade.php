@@ -1,8 +1,9 @@
 @extends('app')
 
 @section('content')
-     <!-- banner -->
-     <section class="banner" id="banner">
+
+
+    <section class="banner" id="banner">
         <div class="container">
             <img src="{{ asset('storage/images/info-item-image.png') }}" alt="image-home-page" class="banner-image-for-bg one zoom">
             <img src="{{ asset('storage/images/info-item-image-1.png') }}" alt="image-home-page" class="banner-image-for-bg two zoom">

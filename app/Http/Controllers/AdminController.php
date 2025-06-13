@@ -11,39 +11,34 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function showAdminPanelPage()
-    {
-        // $users = User::all();
+    public function showAdminPanelPage(){
         $users = User::whereIn('role', ['blocked', 'user'])->get();
-
-
         $users = User::whereIn('role', ['blocked', 'user'])->get();
-        
         $newUsersThisMonth = User::whereIn('role', ['blocked', 'user'])
             ->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->count();
         
         $usersWithCompleteProfile = User::whereIn('role', ['blocked', 'user'])
-        ->whereNotNull('name')
-        ->whereNotNull('surname')
-        ->whereNotNull('email')
-        ->whereNotNull('country')
-        ->whereNotNull('city')
-        ->count();
+            ->whereNotNull('name')
+            ->whereNotNull('surname')
+            ->whereNotNull('email')
+            ->whereNotNull('country')
+            ->whereNotNull('city')
+            ->count();
 
-        $usersWithCompleteFiftyProfile = User::whereIn('role', ['blocked', 'user'])
-        ->whereNotNull('name')
-        ->whereNotNull('surname')
-        ->whereNotNull('email')
-        ->whereNotNull('country')
-        ->whereNotNull('city')
-        ->whereNotNull('phone')
-        ->whereNotNull('stack')
-        ->whereNotNull('about_me')
-        ->whereNotNull('about_me')
-        ->whereNotNull('user_avatar')
-        ->count();
+            $usersWithCompleteFiftyProfile = User::whereIn('role', ['blocked', 'user'])
+            ->whereNotNull('name')
+            ->whereNotNull('surname')
+            ->whereNotNull('email')
+            ->whereNotNull('country')
+            ->whereNotNull('city')
+            ->whereNotNull('phone')
+            ->whereNotNull('stack')
+            ->whereNotNull('about_me')
+            ->whereNotNull('about_me')
+            ->whereNotNull('user_avatar')
+            ->count();
 
         $subscribedUsers = User::whereIn('role', ['blocked', 'user'])
         ->whereHas('subscriptions', function($query) {
@@ -53,23 +48,19 @@ class AdminController extends Controller
         ->count();
 
         // 6. Пользователи с истекшими подписками
-    $expiredSubscriptions = User::whereIn('role', ['blocked', 'user'])
+        $expiredSubscriptions = User::whereIn('role', ['blocked', 'user'])
         ->whereHas('subscriptions', function($query) {
             $query->where('end_date', '<', now());
         })
         ->count();
     
-    // 7. Самый популярный тариф
-    $popularTariff = Tariff::withCount(['subscriptions' => function($query) {
+        $popularTariff = Tariff::withCount(['subscriptions' => function($query) {
             $query->where('is_active', 1)
             ->where('end_date', '>=', now());
         }])
         ->orderByDesc('subscriptions_count')
         ->first();
         
-        
-
-
         $projects = Project::all();
         $experiences = Experience::all();
         $tariffs = Tariff::all();

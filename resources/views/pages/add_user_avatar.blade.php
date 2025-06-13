@@ -15,13 +15,10 @@
                     <p class="backlink_text">Вернуться назад</p>
                 </a>
             </div>
-
             <div class="form-canvas shadow-s">
                 <form action="{{ route('upload.user.avatar', Auth::user()->id) }}" class="form-upload-box max-w-50" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-        
-                    <!-- загрузка изображения -->
                     <div class="form-div form-div-file">
                         <h3 class="form-title">
                             Изображения вашего профиля
@@ -37,17 +34,11 @@
                                 <span>Выбрать файл</span>
                             </label>
                         </div>
-        
                         <span id="fileName"></span>
-        
                         @error('avatar')
                             <p class="text-error">{{ $message }}</p>
                         @enderror
-                
                     </div>
-        
-                    
-                    <!-- btns -->
                     <div class="form-section_btns">
                         <button type="submit" class="btn btn-m form-btn">
                             Загрузить изображение
@@ -56,7 +47,6 @@
                             </svg>
                         </button>
                     </div>
-        
                     <p class="form-requirement">
                         Изображения с соотношением сторон 1:1
                     </p>

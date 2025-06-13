@@ -14,8 +14,8 @@ class UserController extends Controller
 {
 
     // registration
-    public function register(Request $request)
-    {
+
+    public function register(Request $request){
         $request->validate([
             'login' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -39,16 +39,12 @@ class UserController extends Controller
             'website_link' => '',
             'stack' => '',
         ]);
-
-
         return redirect()->route('show.signin')->with('success', 'Регистрация прошла успешно. Пожалуйста, авторизуйтесь.');
-
     }
 
     // login
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $validated = $request->validate([
             'email' => ['required'],
             'password' => ['required'],
@@ -56,31 +52,25 @@ class UserController extends Controller
             'email.required' => 'Логин обязателен для заполнения.',
             'password.required' => 'Пароль обязателен для заполнения.',
         ]);
-
         $user = User::where('email', $request->email)->first();
-
         if (!$user) {
             return back()->withErrors([
                 'email' => 'Пользователя с такой почтой не существует.',
             ]);
         }
-
         if ($user->role === 'blocked') {
             return back()->withErrors([
                 'email' => 'Ваш аккаунт заблокирован. Обратитесь в поддержку.',
             ]);
         }
-
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
-
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('show.admin');
             } else {
                 return redirect()->route('show.account')->with('success', 'Вы успешно вошли в свой аккаунт.');
             }
         }
-
         return back()->withErrors([
             'email' => 'Неверная почта или пароль.',
         ]);

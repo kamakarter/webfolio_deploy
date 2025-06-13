@@ -8,10 +8,8 @@
         <div class="container">
             <div class="auth-container">
                 <h3>Авторизация</h3>
-
                 <form action="{{ route('login') }}" method="post" class="auth-form"  >
                     @csrf
-                    <!-- поле ввода почты -->
                     <div class="form-div">
                         <label for="email" class="form-label">
                             Почта*
@@ -27,8 +25,6 @@
                                 <p class="text-error">{{ $message }}</p>
                             @enderror
                     </div>
-
-                    <!-- поле ввода пароля -->
                     <div class="form-div">
                         <label for="password" class="form-label">
                             Пароль*
