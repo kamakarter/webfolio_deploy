@@ -396,14 +396,12 @@ button[type="submit"] {
         font-weight: 600;
         line-height: 130% ;
         letter-spacing: 0.5px;
-
 }
 
 .form-btn:hover {
     transform: 300ms;
     filter: brightness(105%);
 }
-
 
 /* other components */
 
@@ -462,8 +460,6 @@ button[type="submit"] {
     animation: modalFadeIn 300ms ease-in-out;
 }
 
-
-
 /* animate for all elements */
 
 /* .animate {
@@ -484,13 +480,11 @@ button[type="submit"] {
         opacity: 0;
         transform: translateY(32px);
         transition: opacity 200ms, transform 500ms;
-
-    }   
+    }
     100% {
         opacity: 1;
         transform: translateY(0px);
         transition: opacity 200ms, transform 500ms;
-
     }   
 }
 
@@ -598,7 +592,6 @@ button[type="submit"] {
 .alert-success {
     background: #fbfffd;
     border: 1px solid #059669;
-    /* color: #059669; */
     border-radius: 12px;
     padding: 16px;
     animation: alertFadeIn ease-in-out 0.5s forwards;
@@ -607,7 +600,6 @@ button[type="submit"] {
 .alert-error {
     background: #fffafa;
     border: 1px solid #D92D20;
-    /* color:#D92D20; */
     border-radius: 12px;
     padding: 16px;
     animation: alertFadeIn ease-in-out 0.5s forwards;
